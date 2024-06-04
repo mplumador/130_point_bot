@@ -123,7 +123,7 @@ async def search_and_average(
 			# Include a spacer field to breakup the inline
 			inline_fields.append({"name": "", "value": ""})
 	embed_description = """
-	To search for multiple variations fo the same term, enclose them in parentheseis and separate them by a comma. EX: (PSA, BGS)
+	To search for multiple variations of the same term, enclose them in parentheseis and separate them by a comma. EX: (PSA, BGS)
 	Use a minus \"-\" sign to exclude terms from the search. EX: Lamelo Ball -box -case
 	Use & to match only terms of that pattern. EX: Charizard PSA&10
 	"""
