@@ -1,5 +1,5 @@
-pycord="*"
-python-dotenv="*"
-beautifulsoup4="*"
-requests="*"
-pytz="*"
+py-cord==2.5.0
+python-dotenv>=1.0.1
+beautifulsoup4==4.10.0
+requests>=2.26.0
+pytz==2021.1
