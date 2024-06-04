@@ -7,11 +7,12 @@ from discord.commands import AutocompleteContext
 from query_cards import retrieve_cards_from_query
 from datetime import datetime
 from pytz import timezone
+# Used for windows to be able to use os.environ.get()
 load_dotenv()
 
 bot = discord.Bot()
 
-# Used for windows to be able to use os.environ.get()
+
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
