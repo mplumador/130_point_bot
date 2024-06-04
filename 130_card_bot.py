@@ -81,7 +81,7 @@ async def search_and_average(
 	for query in query_list:
 		response_dict = retrieve_cards_from_query(query, sort_key, marketplace, sold_after_dt)
 		query_text = query
-		# If the header has "No Exact Matches Found, or anything else. Strikethrough the query"
+		# If the header has "No Exact Matches Found", or anything else. Strikethrough the query
 		if response_dict.get("type_text_content", None):
 			query_text =  f"~~{query}~~"
 		inline_fields.append(
