@@ -33,6 +33,36 @@ def basic_embed(title, description, fields=[], color=discord.Colour.blurple(),):
 async def ping(ctx): # a slash command will be created with the name "ping"
     await ctx.respond(f"Pong! Latency is {bot.latency}")
 
+@bot.slash_command(name="help", description="How do I use the bot?")
+async def help(ctx):
+	embed_description = """
+	You can search for cards and average the result set using the `/avg` command. This command takes two required paramaters (card_query and marketplace) and has one optional parameter (sold_after_date).
+
+	__**Parameters**__
+	`card_query` is the term to search for. This would be what you type into the search box on 130point.com/cards/
+
+	`marketplace` is the location the card was sold. This is the last dropdown selector on the 130point.com/cards/ website.
+
+	`sold_after_date` is used to only average results that were sold on or after the date supplied. The format for this parameter is `mm/dd/yyyy`. This would require manually looking at all the results on the 130point.com/cards/ website.
+
+	__**Query Info**__
+	To run multiple card queries with one command, put a semicolon between them. You can do a maximum of 6 searches with one command.
+	EX: `/avg card_query: topps;rookie marketplace: all`
+
+	To search for multiple variations of the same term, enclose them in parentheseis and separate them by a comma. 
+	EX: `/avg card_query: (PSA, BGS) marketplace: all`
+
+	Use a minus \"-\" sign to exclude terms from the search.
+	EX: `/avg card_query: Lamelo Ball -box -case marketplace: all`
+
+	Use & to match only terms of that pattern.
+	EX: `/avg card_query: Charizard PSA&10 marketplace: all`
+	"""
+	embed = basic_embed(f"Help", embed_description)
+	await ctx.respond(embed=embed, ephemeral=True)
+
+
+
 
 async def get_bool_types(ctx:AutocompleteContext):
 	return [
@@ -122,12 +152,7 @@ async def search_and_average(
 				)
 			# Include a spacer field to breakup the inline
 			inline_fields.append({"name": "", "value": ""})
-	embed_description = """
-	To search for multiple variations of the same term, enclose them in parentheseis and separate them by a comma. EX: (PSA, BGS)
-	Use a minus \"-\" sign to exclude terms from the search. EX: Lamelo Ball -box -case
-	Use & to match only terms of that pattern. EX: Charizard PSA&10
-	"""
-    
+	embed_description = "If no results are found, the query will be ~~strikethrough~~"
 	embed = basic_embed(f"Calculate Average Price", embed_description, inline_fields)
 
 	await ctx.followup.send("Averages Calculated:", embed=embed)
